@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Feedback from './components/Feedback/Feedback';
-import Statistics from "./components/Statistics/Statistics"
+import Statistics from "./components/Statistics/Statistics";
+import Notification from './components/Notification/Notification';
 
 class App extends Component {
 
@@ -47,6 +48,8 @@ class App extends Component {
 
     const { good, neutral, bad } = this.state;
     const keys = Object.keys(this.state);
+    const stats = Object.values(this.state);
+   
     
         return (
     <>
@@ -56,13 +59,13 @@ class App extends Component {
             
             />
         
-            <Statistics
+            {stats.some(value => value > 0) ? <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
-            /> 
+            /> : <Notification message="No feedback given"/> }
     </>
      
         );
