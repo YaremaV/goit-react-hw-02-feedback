@@ -1,5 +1,6 @@
 import React from 'react';
 import Section from '../Section/Section';
+import './feedback.css';
 
 export default function Feedback({ options, onLeaveFeedback }) {
   return (
@@ -7,6 +8,7 @@ export default function Feedback({ options, onLeaveFeedback }) {
       <>
         {options.map((option, idx) => (
           <button
+            className="button"
             key={idx}
             type="button"
             name={option}

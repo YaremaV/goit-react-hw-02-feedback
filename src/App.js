@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Feedback from './components/Feedback/Feedback';
 import Statistics from './components/Statistics/Statistics';
 import Notification from './components/Notification/Notification';
+import Container from './components/Container/Container';
 
 class App extends Component {
   static defaultProps = {
@@ -32,7 +33,6 @@ class App extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    // const { good } = this.state.good;
     return Math.round((this.state.good / this.countTotalFeedback()) * 100);
   };
 
@@ -42,7 +42,7 @@ class App extends Component {
     const stats = Object.values(this.state);
 
     return (
-      <>
+      <Container>
         <Feedback options={keys} onLeaveFeedback={this.onFeedback} />
 
         {stats.some(value => value > 0) ? (
@@ -56,7 +56,7 @@ class App extends Component {
         ) : (
           <Notification message="No feedback given" />
         )}
-      </>
+      </Container>
     );
   }
 }
