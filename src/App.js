@@ -22,18 +22,18 @@ class App extends Component {
     bad: 0,
   };
 
-  onFeedback = event => {
+  getFeedback = feedBack => {
     this.setState(prevState => ({
-      [event.target.name]: prevState[event.target.name] + 1,
+      [feedBack.target.name]: prevState[feedBack.target.name] + 1,
     }));
   };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+  countTotalFeedback = ({ good, neutral, bad } = this.state) => {
+    return good + neutral + bad;
   };
 
-  countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+  countPositiveFeedbackPercentage = ({ good } = this.state) => {
+    return Math.round((good / this.countTotalFeedback()) * 100);
   };
 
   render() {
@@ -43,7 +43,7 @@ class App extends Component {
 
     return (
       <Container>
-        <Feedback options={keys} onLeaveFeedback={this.onFeedback} />
+        <Feedback options={keys} onLeaveFeedback={this.getFeedback} />
 
         {stats.some(value => value > 0) ? (
           <Statistics
