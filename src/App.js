@@ -22,9 +22,11 @@ class App extends Component {
     bad: 0,
   };
 
-  getFeedback = feedBack => {
+  getFeedback = evt => {
+    const target = evt.target;
+    const feedBack = target.name;
     this.setState(prevState => ({
-      [feedBack.target.name]: prevState[feedBack.target.name] + 1,
+      [feedBack]: prevState[feedBack] + 1,
     }));
   };
 
